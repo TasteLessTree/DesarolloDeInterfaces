@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
 
 public class Ejercicio4 extends JFrame {
 
@@ -60,8 +59,7 @@ public class Ejercicio4 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox_meses = new JComboBox();
-		comboBox_meses.setModel(new DefaultComboBoxModel(Meses.values()));
+		JComboBox<Meses> comboBox_meses = new JComboBox<Meses>(Meses.values());
 		comboBox_meses.setBounds(10, 11, 190, 34);
 		contentPane.add(comboBox_meses);
 		

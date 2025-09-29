@@ -3,6 +3,8 @@ package curso.di;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Toolkit;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,10 +12,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
+/** @author AndrésPérezM
+ * */
 
 public class Ejercicio4_2 extends JFrame {
 
@@ -21,8 +27,7 @@ public class Ejercicio4_2 extends JFrame {
 	private JPanel contentPane;
 	private JTextField userInput;
 	private JLabel lblMaterialAnyadir, lblMateriales;
-	private JComboBox cBMateriales;
-	private JButton btnAnyadir, btnSalir;
+	private JButton btnAnyadir, btnSalir, btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -44,14 +49,16 @@ public class Ejercicio4_2 extends JFrame {
 	 * Create the frame.
 	 */
 	public Ejercicio4_2() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ejercicio4_2.class.getResource("/curso/di/images/minecraft.png")));
 		setTitle("Añadir a la lista");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 291);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setContentPane(contentPane);		
 		
-		btnSalir = new JButton("Salir");
+		btnSalir = new JButton("");
+		btnSalir.setIcon(new ImageIcon(Ejercicio4_2.class.getResource("/curso/di/images/exit_small.png")));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int respuesta = JOptionPane.showConfirmDialog(
@@ -64,8 +71,13 @@ public class Ejercicio4_2 extends JFrame {
 			}
 		});
 		contentPane.setLayout(null);
-		btnSalir.setBounds(10, 175, 86, 61);
+		btnSalir.setBounds(208, 171, 70, 70);
 		contentPane.add(btnSalir);
+		
+		DefaultComboBoxModel<String> defaultCBM = new DefaultComboBoxModel<String>();
+		JComboBox<String> cBMateriales = new JComboBox<String>(defaultCBM);
+		cBMateriales.setBounds(316, 72, 141, 27);
+		contentPane.add(cBMateriales);
 		
 		lblMaterialAnyadir = new JLabel("MATERIAL");
 		lblMaterialAnyadir.setVerticalAlignment(SwingConstants.TOP);
@@ -83,10 +95,20 @@ public class Ejercicio4_2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String texto = userInput.getText();
 				
-				//cbMateriales;
+				if (texto.isBlank() && texto.isEmpty()) {
+					aviso("NO se puede añadir un elemento en blanco o vacío.");
+				} else if (!texto.matches("[a-zA-Z]+")) {
+					aviso("NO se puede añadir un elemento con caracteres especiales.");
+				} else if (!(defaultCBM.getIndexOf(texto.toUpperCase()) == -1)) {
+					aviso("Elemento ya en la lista");
+				} else {
+					defaultCBM.addElement(texto.toUpperCase());
+					defaultCBM.setSelectedItem(texto.toUpperCase());
+					userInput.setText("");
+				}
 			}
 		});
-		btnAnyadir.setBounds(193, 55, 86, 61);
+		btnAnyadir.setBounds(193, 72, 100, 27);
 		contentPane.add(btnAnyadir);
 		
 		lblMateriales = new JLabel("MATERIALES");
@@ -95,8 +117,31 @@ public class Ejercicio4_2 extends JFrame {
 		lblMateriales.setBounds(316, 34, 112, 27);
 		contentPane.add(lblMateriales);
 		
-		cBMateriales = new JComboBox();
-		cBMateriales.setBounds(316, 72, 141, 27);
-		contentPane.add(cBMateriales);
+		
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object eliminar = defaultCBM.getSelectedItem();
+				
+				int respuesta = JOptionPane.showConfirmDialog(
+						Ejercicio4_2.this,
+						"¿Seguro que quieres eliminar: \"" + eliminar + "\"?",
+						"ELIMINAR",
+						JOptionPane.YES_NO_OPTION);
+				
+				if (respuesta == 0) {
+					defaultCBM.removeElement(eliminar);
+					defaultCBM.setSelectedItem(defaultCBM.getElementAt(0));
+				} 
+			}
+		});
+		btnEliminar.setBounds(193, 119, 100, 27);
+		contentPane.add(btnEliminar);
+	}
+	
+	private void aviso(String mensaje) {
+		JOptionPane.showMessageDialog(
+				Ejercicio4_2.this,
+				mensaje);
 	}
 }
