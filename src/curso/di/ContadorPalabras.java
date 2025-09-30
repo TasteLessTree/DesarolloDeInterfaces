@@ -23,6 +23,7 @@ public class ContadorPalabras extends JFrame {
 	private JScrollPane scrollPane;
 	private TextArea textArea;
 	private TextField txtVocales, txtConsonantes, txtEspeciales, txtResto, txtNumeros, txtTotal;
+	private GestorFicheros gFichero;
 
 	/**
 	 * Launch the application.
@@ -61,6 +62,11 @@ public class ContadorPalabras extends JFrame {
 		contentPane.add(btnLeer);
 		
 		btnEscribir = new JButton("Escribir");
+		btnEscribir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gFichero.setTextFichero();
+			}
+		});
 		btnEscribir.setBounds(116, 308, 89, 23);
 		contentPane.add(btnEscribir);
 		
@@ -137,6 +143,5 @@ public class ContadorPalabras extends JFrame {
 		txtTotal = new TextField();
 		txtTotal.setBounds(425, 196, 105, 22);
 		contentPane.add(txtTotal);
-
 	}
 }
