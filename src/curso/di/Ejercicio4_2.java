@@ -120,8 +120,15 @@ public class Ejercicio4_2 extends JFrame {
 		
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				Object eliminar = defaultCBM.getSelectedItem();
+				
+				if (eliminar == null) {
+					JOptionPane.showMessageDialog(
+							Ejercicio4_2.this,
+							"No puedes eliminar una lista vacía.");
+					return;
+				}
 				
 				int respuesta = JOptionPane.showConfirmDialog(
 						Ejercicio4_2.this,
