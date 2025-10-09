@@ -17,7 +17,7 @@ import java.awt.Label;
 import javax.swing.JScrollPane;
 import java.awt.TextField;
 
-public class ContadorPalabras extends JFrame {
+public class Ejemplo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +35,7 @@ public class ContadorPalabras extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContadorPalabras frame = new ContadorPalabras();
+					Ejemplo frame = new Ejemplo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class ContadorPalabras extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ContadorPalabras() {
+	public Ejemplo() {
 		setTitle("Contador de caracteres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 556, 381);
@@ -126,7 +126,7 @@ public class ContadorPalabras extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int respuesta = JOptionPane.showConfirmDialog(
-						ContadorPalabras.this,
+						Ejemplo.this,
 						"¿Seguro que quieres salir?",
 						"SALIR",
 						JOptionPane.YES_NO_OPTION);

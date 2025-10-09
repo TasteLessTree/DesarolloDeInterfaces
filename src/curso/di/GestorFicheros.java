@@ -14,7 +14,7 @@ public class GestorFicheros {
 	private BufferedReader reader = null;
 	
     public GestorFicheros() {
-    	PATH = "src/curso/di/resources/paco.txt";
+    	PATH = "src/curso/di/resources/Ejemplo.java";
     	textoCompleto = new String("");
     	fichero = new File(PATH);
     	lector = null;
@@ -68,7 +68,7 @@ public class GestorFicheros {
 				 consonantes++;
 			 else if (charActual >= '0' && charActual <= '9')
 				 numeros++;
-			 else if(charActual == ';')
+			 else if(!Character.isLetter(charActual) && !Character.isWhitespace(charActual))
 				 especiales++;
 			 else
 				resto++;

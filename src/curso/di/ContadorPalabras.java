@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
@@ -50,7 +49,7 @@ public class ContadorPalabras extends JFrame {
 	public ContadorPalabras() {
 		setTitle("Contador de caracteres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 556, 381);
+		setBounds(100, 100, 620, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -92,34 +91,34 @@ public class ContadorPalabras extends JFrame {
 		contentPane.add(btnContar);
 		
 		lblVocales = new Label("Vocales");
-		lblVocales.setBounds(321, 10, 62, 22);
+		lblVocales.setBounds(406, 11, 62, 22);
 		contentPane.add(lblVocales);
 		
 		lblConsonantes = new Label("Consonantes");
-		lblConsonantes.setBounds(321, 48, 78, 22);
+		lblConsonantes.setBounds(406, 48, 78, 22);
 		contentPane.add(lblConsonantes);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 305, 286);
+		scrollPane.setBounds(10, 11, 390, 286);
 		contentPane.add(scrollPane);
 		
 		textArea = new TextArea();
 		scrollPane.setViewportView(textArea);
 		
 		lblEspeciales = new Label("Especiales");
-		lblEspeciales.setBounds(321, 83, 78, 22);
+		lblEspeciales.setBounds(406, 83, 78, 22);
 		contentPane.add(lblEspeciales);
 		
 		lblResto = new Label("Resto");
-		lblResto.setBounds(321, 119, 78, 22);
+		lblResto.setBounds(406, 111, 78, 22);
 		contentPane.add(lblResto);
 		
 		lblNumeros = new Label("Números");
-		lblNumeros.setBounds(321, 158, 78, 22);
+		lblNumeros.setBounds(406, 139, 78, 22);
 		contentPane.add(lblNumeros);
 		
 		lblTotal = new Label("Total");
-		lblTotal.setBounds(321, 196, 78, 22);
+		lblTotal.setBounds(406, 167, 78, 22);
 		contentPane.add(lblTotal);
 		
 		btnSalir = new JButton("Salir");
@@ -134,31 +133,31 @@ public class ContadorPalabras extends JFrame {
 				if (respuesta == 0) System.exit(EXIT_ON_CLOSE); 
 			}
 		});
-		btnSalir.setBounds(441, 308, 89, 23);
+		btnSalir.setBounds(506, 308, 89, 23);
 		contentPane.add(btnSalir);
 		
 		txtVocales = new TextField();
-		txtVocales.setBounds(425, 10, 105, 22);
+		txtVocales.setBounds(490, 11, 105, 22);
 		contentPane.add(txtVocales);
 		
 		txtConsonantes = new TextField();
-		txtConsonantes.setBounds(425, 48, 105, 22);
+		txtConsonantes.setBounds(490, 48, 105, 22);
 		contentPane.add(txtConsonantes);
 		
 		txtEspeciales = new TextField();
-		txtEspeciales.setBounds(425, 83, 105, 22);
+		txtEspeciales.setBounds(490, 83, 105, 22);
 		contentPane.add(txtEspeciales);
 		
 		txtResto = new TextField();
-		txtResto.setBounds(425, 119, 105, 22);
+		txtResto.setBounds(490, 111, 105, 22);
 		contentPane.add(txtResto);
 		
 		txtNumeros = new TextField();
-		txtNumeros.setBounds(425, 158, 105, 22);
+		txtNumeros.setBounds(490, 139, 105, 22);
 		contentPane.add(txtNumeros);
 		
 		txtTotal = new TextField();
-		txtTotal.setBounds(425, 196, 105, 22);
+		txtTotal.setBounds(490, 167, 105, 22);
 		contentPane.add(txtTotal);
 	}
 }
