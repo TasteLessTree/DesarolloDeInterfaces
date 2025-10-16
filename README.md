@@ -1,5 +1,5 @@
 # Desarrollo de Interfaces
 
-Hecho por Andrés Pérez Mora.
+Ejercicios realizados por Andrés Pérez Mora.
 
 Con el IDE de Eclipse.
