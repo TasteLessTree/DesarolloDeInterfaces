@@ -31,6 +31,8 @@ public class Ejercicio7 extends JFrame {
 	private JList<String> listPersonajesSeleccionados;
 	private JButton btnInsertar;
 	private JButton btnInsertarIzquierda;
+	private JButton btnEliminar;
+	private JButton btnEliminarIzquierdo;
 	
 	private enum Personajes {
 		Altair_Ibn_Lahad,
@@ -72,7 +74,7 @@ public class Ejercicio7 extends JFrame {
 	public Ejercicio7() {
 		setTitle("Ejercicio 7");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 690, 480);
+		setBounds(100, 100, 632, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -90,7 +92,7 @@ public class Ejercicio7 extends JFrame {
 				if (respuesta == 0) System.exit(EXIT_ON_CLOSE); 
 			}
 		});
-		btnSalir.setBounds(587, 376, 77, 54);
+		btnSalir.setBounds(258, 293, 89, 54);
 		contentPane.add(btnSalir);
 		
 		btnPasarUnElemento = new JButton(">");
@@ -173,23 +175,31 @@ public class Ejercicio7 extends JFrame {
 		});
 		btnInsertarIzquierda.setBounds(367, 309, 89, 23);
 		contentPane.add(btnInsertarIzquierda);
+		
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarUnElemento(dlistPersonajes, listPersonajes);
+			}
+		});
+		btnEliminar.setBounds(142, 309, 89, 23);
+		contentPane.add(btnEliminar);
+		
+		btnEliminarIzquierdo = new JButton("Eliminar");
+		btnEliminarIzquierdo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarUnElemento(dlistSeleccionados, listPersonajesSeleccionados);
+			}
+		});
+		btnEliminarIzquierdo.setBounds(499, 309, 89, 23);
+		contentPane.add(btnEliminarIzquierdo);
 
 		// Seguramente exista una forma más fácil de hacer esto
-		dlistPersonajes.addElement(Personajes.Altair_Ibn_Lahad.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Ezio_Auditore_da_Firenze.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Connor_Kennway.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Edward_Kennway.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Shay_Patrick_Cormac.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Arno_Victor_Dorian.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Jacob_Frye.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Evie_Frye.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Bayek_de_Siwa.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Aya.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Kassandra.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Eivor.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Basim_Ibn_Ishaq.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Fujibayashi_Naoe.toString().replace("_", " "));
-		dlistPersonajes.addElement(Personajes.Yasuke.toString().replace("_", " "));
+		Personajes[] todos = Personajes.values();
+		
+		for (int i = 0; i < todos.length; i++) {
+			dlistPersonajes.addElement(todos[i].toString().replace("_", " "));
+		}
 	}
 	
 	private void insertarUnElemento(JList<String> lista, DefaultListModel<String> origen, DefaultListModel<String> destino) {
@@ -231,5 +241,26 @@ public class Ejercicio7 extends JFrame {
 		String mensaje = JOptionPane.showInputDialog(Ejercicio7.this,
 				"Escribe el nombre de un personaje:");
 		origen.addElement(mensaje);
+	}
+	
+	private void eliminarUnElemento(DefaultListModel<String> modelo, JList<String> lista) {
+		String eliminar = lista.getSelectedValue();
+		
+		if (eliminar == null) {
+			JOptionPane.showMessageDialog(Ejercicio7.this,
+					"No hay ningún personaje seleccionado.");
+			return;
+		}
+		
+		int respuesta = JOptionPane.showConfirmDialog(
+				Ejercicio7.this,
+				"¿Seguro que quieres eliminar: \"" + eliminar + "\"?",
+				"ELIMINAR",
+				JOptionPane.YES_NO_OPTION);
+		
+		if (respuesta == 0) {
+			int idx = lista.getSelectedIndex();
+			modelo.remove(idx);
+		} 
 	}
 }
