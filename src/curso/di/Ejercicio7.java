@@ -194,7 +194,7 @@ public class Ejercicio7 extends JFrame {
 		btnEliminarIzquierdo.setBounds(499, 309, 89, 23);
 		contentPane.add(btnEliminarIzquierdo);
 
-		// Seguramente exista una forma más fácil de hacer esto
+		// Se me acaba de ocurrir cómo
 		Personajes[] todos = Personajes.values();
 		
 		for (int i = 0; i < todos.length; i++) {
