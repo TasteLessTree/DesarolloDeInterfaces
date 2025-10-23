@@ -12,10 +12,13 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class BarraDeProgreso extends JFrame {
 
@@ -69,9 +72,29 @@ public class BarraDeProgreso extends JFrame {
 		contentPane.add(btnSalir);
 		
 		pbCuenta = new JProgressBar();
+		pbCuenta.setForeground(new Color(0, 0, 160));
+		pbCuenta.setStringPainted(true);
 		pbCuenta.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblPorcentaje.setText(String.valueOf(pbCuenta.getValue() + " %"));
+				Random random = new Random();
+				
+				int min = 0;
+				int max = 255;
+				
+				int red = random.nextInt((max - min) + 1) + min;
+				int green = random.nextInt((max - min) + 1) + min;
+				int blue = random.nextInt((max - min) + 1) + min;
+				
+				pbCuenta.setForeground(new Color(red, green, blue));
+				lblPorcentaje.setForeground(new Color(red, green, blue));
+				
+				int porcentaje = pbCuenta.getValue();
+				
+				lblPorcentaje.setText(String.valueOf(porcentaje) + " %");
+				
+				if (porcentaje == 100) {
+					btnAvanzar.setEnabled(true);
+				}
 			}
 		});
 		pbCuenta.setValue(0);
@@ -80,16 +103,20 @@ public class BarraDeProgreso extends JFrame {
 		pbCuenta.setBounds(10, 11, 361, 34);
 		contentPane.add(pbCuenta);
 		
-		lblPorcentaje = new JLabel("%");
+		lblPorcentaje = new JLabel("0 %");
+		lblPorcentaje.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPorcentaje.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblPorcentaje.setFont(new Font("JetBrainsMonoNL NF", Font.PLAIN, 14));
 		lblPorcentaje.setBounds(381, 11, 62, 34);
 		contentPane.add(lblPorcentaje);
 		
 		btnAvanzar = new JButton("Avanzar");
 		btnAvanzar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				AvanzarTareaBarraProgreso tarea1 = new AvanzarTareaBarraProgreso("Tarea 1", pbCuenta);
 				tarea1.start();
+				
+				btnAvanzar.setEnabled(false);
 			}
 		});
 		btnAvanzar.setBounds(10, 56, 89, 42);
