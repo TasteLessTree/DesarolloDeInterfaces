@@ -86,7 +86,6 @@ public class BarraDeProgreso extends JFrame {
 				int blue = random.nextInt((max - min) + 1) + min;
 				
 				pbCuenta.setForeground(new Color(red, green, blue));
-				lblPorcentaje.setForeground(new Color(red, green, blue));
 				
 				int porcentaje = pbCuenta.getValue();
 				
