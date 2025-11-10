@@ -1,4 +1,4 @@
-package curso.di;
+package curso.di.resources;
 
 import java.awt.EventQueue;
 
@@ -9,13 +9,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
 import java.awt.Label;
 import javax.swing.JScrollPane;
 import java.awt.TextField;
+import curso.di.GestorFicheros;
 
 public class Ejemplo extends JFrame {
 
@@ -26,7 +26,7 @@ public class Ejemplo extends JFrame {
 	private JScrollPane scrollPane;
 	private TextArea textArea;
 	private TextField txtVocales, txtConsonantes, txtEspeciales, txtResto, txtNumeros, txtTotal;
-	private GestorFicheros gFichero = new GestorFicheros();;
+	private GestorFicheros gFichero = new GestorFicheros();
 
 	/**
 	 * Launch the application.
