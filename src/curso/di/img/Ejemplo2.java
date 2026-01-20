@@ -51,10 +51,10 @@ public class Ejemplo2 extends JFrame {
 		lblImagen = new JLabel();
 		contentPane.add(lblImagen);
 		
-		JButton btnAC = new JButton("Assassin's Creed");
+		JButton btnAC = new JButton("Gato");
 		btnAC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarImagen("ac_shadows");
+				cambiarImagen("cat");
 			}
 		});
 		contentPane.add(btnAC);
@@ -62,15 +62,15 @@ public class Ejemplo2 extends JFrame {
 		JButton btnSpongeBob = new JButton("Sponge Bob");
 		btnSpongeBob.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarImagen("spongebob_money");
+				cambiarImagen("spongebob_ball");
 			}
 		});
 		contentPane.add(btnSpongeBob);
 		
-		JButton btnMinecraft = new JButton("Minecraft");
+		JButton btnMinecraft = new JButton("Gato 2");
 		btnMinecraft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarImagen("cool_minecraft_wallpaper");
+				cambiarImagen("cat2");
 			}
 		});
 		contentPane.add(btnMinecraft);
